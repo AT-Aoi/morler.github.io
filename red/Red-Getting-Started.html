@@ -507,8 +507,8 @@ names2: ["Paul" "Tom" "Mike" "John"]
 print append "names1 is " check names1
 print append "names2 is " check names2
 </pre>
-<h4 id="section-3.9.2">3.9.2 Libraries</h4>
-<p>You can save collections of useful functions ("libraries") to a file, and import them with 'do.  This saves you from having to retype or paste the code of commonly used function definitions into each new program.  Save just the 'check function code above to a file named "myfunctions.red" - be sure to include the rebol[] header when saving code to a file:</p>
+<h4 id="section-3.9.2">3.9.2 扩展库</h4>
+<p>您可以将有用的函数（“库”）的集合保存到文件中，并使用“do”导入。  这样可以节省您将常用函数定义代码重新输入或粘贴到每个新程序中的时间。  只需将上面的 check 函数代码保存到名为“myfunctions.red”的文件中 - 请确保在将代码保存到文件时包含 Red [] 头：</p>
 <pre>Red []
 check: func [list] [
     answer: "安全"
@@ -518,7 +518,7 @@ check: func [list] [
     answer
 ]
 </pre>
-<p>The program from the previous section then looks like this:</p>
+<p>上一节的程序如下所示：</p>
 <pre>Red []
 do %myfunctions.red
 names1: ["Joe" "Dan" "Sh--" "Bill"]
@@ -526,96 +526,98 @@ names2: ["Paul" "Tom" "Mike" "John"]
 print append "names1 is " check names1
 print append "names2 is " check names2
 </pre>
-<p>Imported files can be found on the local file system (i.e., on your hard drive, a thumb drive, etc.), or at a network/Internet URL.  For example, if you save the "myfunctions.r" file on your web site server, you could import it like this:</p>
+<p>导入的文件可以在本地文件系统（即硬盘驱动器，移动存储器等）上，也可以在 网络/Internet 网址上。  例如，如果您将“myfunctions.r”文件保存在您的网站服务器上，则可以像这样导入：</p>
 <pre>do http://site.com/myfunctions.r
 </pre>
-<p>You can actually include <i>any</i> code you want in imported files (not just function definitions).  You could put the entire program above into a file on your web site and run it by "do"ing the URL of the file.  Importing a file with 'do is exactly the same as copying and pasting the contents of the file into your code, and then executing it.</p>
+<p>实际上，您可以在导入的文件中包含所需的 <i>任何</i> 代码（而不仅仅是函数定义）。  您可以将上述整个程序放入网站上的文件中，并通过“do”导入文件的 URL 来运行。  用 do 导入文件与将文件的内容复制并粘贴到代码中完全一样，然后执行它。</p>
 </blockquote>
 <h3 id="section-3.10">3.10 处理错误</h3>
 <blockquote>
-<p>The 'error? and 'try functions can be used together to detect runtime errors in Red code.  Use an 'if or other conditional evaluation to handle any error events:</p>
-<pre>if error? try [0 / 0] [alert "Dividing by zero is an error"]
+<p>error?  和 try 函数可以一起使用来检测 Red 语言代码中的运行时错误。  使用 if 或其他条件判断来处理任何错误事件：</p>
+<pre>if error? try [0 / 0] [alert "除零错误"]
 </pre>
-<p>You can examine error properties by assigning a label to the result of the 'try function:</p>
+<p>您可以通过为 try 函数的结果分配一个标签来检查错误属性：</p>
 <pre>if error? err: try [0 / 0] [probe err]
 </pre>
-<p>The 'attempt function can also be used to handle errors:</p>
+<p>attempt 函数也可以用来处理错误：</p>
 <pre>attempt [1 / 1]
 attempt [0 / 0]
 </pre>
 </blockquote>
 <h2 id="section-4">4. Rebol 中的一些 Rote GUI，文件和数据列表示例</h2>
 <blockquote>
-<p>This section demonstrates a variety of code patterns which are commonly used to create apps in Red.  They make use of user interfaces, functions, variables, string concatenation, lists, loops, conditional evaluations, and other code structures which you've been introduced to already.  The examples may seen randomly selected or trivial - just paste or type each of them into a script file, by rote, and then compile/run the code.  You'll use variations of each snippet in the 20+ example apps which make up the rest of the tutorial.  The first examples focus on performing basic interactions with a user interface, then progress towards handling more interesting data manipulation operations.  Pay particular attention to the use of lists and loops, as the examples advance.</p>
+<p>本节演示了通常用于在 Red 语言中创建应用程序的各种代码模式。  它们使用了已经介绍过的用户界面，函数，变量，字符串连接，列表，循环，条件判断以及其他代码结构。  这些例子可以随机选择或者尝试 - 只需将它们粘贴到脚本文件中，然后再编译/运行代码即可。  您可以在构成本教程其余部分的 20 多个示例应用程序中使用每个片段的变体形式。  第一个例子着重于执行与用户界面的基本交互，然后进展到处理更有趣的数据操作。  要注意列表和循环的使用，就像上面这些例子中那样。</p>
 </blockquote>
 <h3 id="section-4.1">4.1 基本 GUI 示例</h3>
 <blockquote>
-<p>Create a window with a button:</p>
+<p>创建一个带有按钮的窗口：</p>
 <pre>Red [needs: 'view]
 view [
-    button "Click Me"
+    button "点击我"
 ]
 </pre>
-<p>When the button is clicked, do something:</p>
+<p>点击按钮时，执行以下操作：</p>
 <pre>Red [needs: 'view]
 view [
-    button "Click Me" [print "I've been clicked!"]
+    button "点击我" [print "我被点击了！"]
 ]
 </pre>
-<p>Here's a window with a button and a text entry field labeled 'f.  When the button is clicked, print the text currently in the 'f field.  Try typing something in the field, then click the button:</p>
+<p>这是一个带有按钮和文本输入字段的窗口，标记为 f 。  单击按钮时，打印“f”字段中的当前文本。  尝试在字段中键入内容，然后单击按钮：</p>
 <pre>Red [needs: 'view]
 view [
-    f: field "Type here, then click the button"
-    button "Click Me" [print f/text]
+    f: field "在这里输入，然后点击按钮"
+    button "点击我" [print f/text]
 ]
 </pre>
-<p>When the button is clicked, write the contents of the field to the file mytext.txt, then print that the file has been saved:</p>
+<p>单击按钮时，将该字段的内容写入文件 mytext.txt，然后显示文件已被保存：</p>
 <pre>Red [needs: 'view]
 view [
-    f: field "Type here, then click the button"
-    button "Click Me" [
+    f: field "在这里输入，然后点击按钮"
+    button "点击我"
+]
+
         write %mytext.txt f/text
-        print "Saved"
+        print "已保存"
     ]
 ]
 </pre>
-<p>Add another button to read the file contents back into the field.  Now you can close the program, run it again, and retrieve the saved text:</p>
+<p>添加另一个按钮将文件内容读回到该字段中。  现在可以关闭该程序，再次运行并检索保存的文本：</p>
 <pre>Red [needs: 'view]
 view [
     f: field 
-    button "Save" [
+    button "保存" [
         write %mytext.txt f/text
-        print "Saved"
+        print "已保存"
     ]
-    button "Load" [
+    button "加载" [
         f/text: form read %mytext.txt
     ]
 ]
 </pre>
-<p>Here's the exact same program as above, except with a text area widget, instead of a one-line field.  This forms a simple text editor:</p>
+<p>这是与上述完全相同的程序，除了使用文本区域组件，而不是单行字段。  这形成一个简单的文本编辑器：</p>
 <pre>Red [needs: 'view]
 view [
     a: area
-    button "Save" [
+    button "保存" [
         save %mytext.txt a/text
-        print "Saved"
+        print "已保存"
     ]
-    button "Load" [
+    button "加载" [
         a/text: load %mytext.txt
     ]
 ]
 </pre>
-<p>Here the text is <i>appended</i> to mylist.txt.  Instead of overwriting the file contents each time, each new save operation loads the previous file, then adds an additional new line.  The 'append function joins together the loaded text with the new text (along with some newline characters), so that a multi-line log file is created:</p>
+<p>这里的文本 <i>附加</i> 到 mylist.txt。  每次新的保存操作都不会覆盖文件内容，而是加载上一个文件，然后添加一个新的行。  append 函数将加载的文本与新文本（以及一些换行符）连接在一起，以便创建多行日志文件：</p>
 <pre>Red [needs: 'view]
 view [
     下面
-    f: field "Enter some lines here..."
-    button "Save" [
+    f: field "在这里输入一些行。。。"
+    button "保存" [
         save %mylist.txt append append load %mylist.txt f/text "^M^/"
-        print "Saved"
+        print "已保存"
     ]
-    a: area "All log entries will appear here when loaded..."
-    button "Load" [
+    a: area "加载时，所有日志内容都将显示在此处。。。"
+    button "加载" [
         a/text: form load %mylist.txt
     ]
 ]
@@ -623,20 +625,20 @@ view [
 </blockquote>
 <h3 id="section-4.2">4.2 使用列表和循环的一些 GUI 示例</h3>
 <blockquote>
-<p>Now here are some examples which display lists in a GUI layout, using the 'text-list widget:</p>
+<p>现在这里有一些在 GUI 布局中显示列表的示例，使用 text-list 组件：</p>
 <pre>Red [needs: 'view]
 view [
     text-list data ["John" "Dave" "Jane" "Bob" "Sue"]
 ]
 </pre>
-<p>You can display a previously created list:</p>
+<p>您可以显示以前创建的列表：</p>
 <pre>Red [needs: 'view]
 mylist: copy ["John" "Dave" "Jane" "Bob" "Sue"]
 view [
     text-list data mylist
 ]
 </pre>
-<p>A 'do block can be used to evaluate code and make changes to the GUI, before a layout is displayed.  Here, a blank text-list widget is created, then a block of values is added to it, before being displayed:</p>
+<p>在显示布局之前，可以使用 do 代码块来运行代码并对 GUI 进行更改。  在这里，创建一个空白的文本列表组件，然后在显示之前添加一些值数据：</p>
 <pre>Red [needs: 'view]
 mylist: copy ["John" "Dave" "Jane" "Bob" "Sue"]
 view [
@@ -644,22 +646,22 @@ view [
     do [append t/data mylist]
 ]
 </pre>
-<p>You can also add items to a widget, using the action block of another widget:</p>
+<p>您还可以使用其他组件的操作块将条目添加到窗口组件中：</p>
 <pre>Red [needs: 'view]
 mylist: copy ["John" "Dave" "Jane" "Bob" "Sue"]
 view [
     t: text-list data []
-    button "Add Items to List" [append t/data mylist]
+    button "添加条目到列表" [append t/data mylist]
 ]
 </pre>
-<p>This example uses the 'extract function to create a <i>new list</i> containing just the names from the original list, which is then displayed in the text-list widget:</p>
+<p>此示例使用 extract 函数创建一个仅包含原始列表中的姓名的 <i>新列表</i> ，然后显示在文本列表窗口组件中：</p>
 <pre>mylist: copy ["John" 2804 "Dave" 9439 "Jane" 2386 "Bob" 9823 "Sue" 4217]
 names: extract mylist 2
 view [
     t: text-list data names
 ]
 </pre>
-<p>This example does the same thing as above, using a 'foreach loop technique.  First, a blank 'names list is created using "copy []", then items are added to this list using 'foreach and 'append.  We'll use this code pattern going forward, to help familiarize the use of 'foreach, since it is very common in all types of Red apps:</p>
+<p>这个例子使用 foreach 循环结构来做同样的事情。  首先，使用“copy []”创建一个空白的姓名列表，然后使用 foreach 和 append 将项目添加到此列表。  我们将使用此代码模式，以帮助熟悉“foreach”的使用，因为它在所有类型的 Red 语言应用程序中都很常见：</p>
 <pre>Red [needs: 'view]
 mylist: ["John" 2804 "Dave" 9439 "Jane" 2386 "Bob" 9823 "Sue" 4217]
 names: copy []
@@ -668,7 +670,7 @@ view [
     t: text-list data names
 ]
 </pre>
-<p>The "index" of an item in a list is its numerical position in the list.  The index of the clicked item in a text-list widget is referred to with "/selected":</p>
+<p>列表中项目的“index”是其列表中的数字位置。  文本列表组件中点击的条目索引使用“/selected”引用：</p>
 <pre>Red [needs: 'view]
 mylist: ["John" 2804 "Dave" 9439 "Jane" 2386 "Bob" 9823 "Sue" 4217]
 names: extract mylist 2
@@ -676,7 +678,7 @@ view [
     t: text-list data names [probe t/selected]
 ]
 </pre>
-<p>You can use a selected index, to pick out actual values from the text-list data block:</p>
+<p>您可以使用所选索引从文本列表数据块中选取实际值：</p>
 <pre>Red [needs: 'view]
 mylist: ["John" 2804 "Dave" 9439 "Jane" 2386 "Bob" 9823 "Sue" 4217]
 names: copy []
@@ -685,7 +687,7 @@ view [
     t: text-list data names [probe pick t/data t/selected]
 ]
 </pre>
-<p>The word 'face can be used when a widget refers to itself.  Here's the same example as above, using 'face instead of 't:</p>
+<p>当组件指向自己时，可以使用“face”关键字。  下面是与上面相同的例子，使用 face 而不是 t：</p>
 <pre>Red [needs: 'view]
 mylist: ["John" 2804 "Dave" 9439 "Jane" 2386 "Bob" 9823 "Sue" 4217]
 names: copy []
@@ -696,7 +698,7 @@ view [
     ]
 ]
 </pre>
-<p>You can select the next item in a list by adding 1 to the current item's index.  In the 'mylist example below, each number value is always found at the next index location, immediately following every name (i.e., "Jane" is at position 5 in the example list, her number 2386, is at position 6).  In code, that's thought of as 1 + (Jane's index position):</p>
+<p>您可以通过在当前项目的索引中添加 1 来选择列表中的下一个项目。  在下面的 mylist 示例中，每个数字值始终位于下一个索引位置，紧随每个姓名（即“Jane”在示例列表中的位置 5，她的编号 2386 位于位置 6）。  在代码中，这被认为是 1 +（Jane 的索引位置）：</p>
 <pre>Red [needs: 'view]
 mylist: ["John" 2804 "Dave" 9439 "Jane" 2386 "Bob" 9823 "Sue" 4217]
 names: copy []
@@ -712,7 +714,7 @@ view [
 </blockquote>
 <h3 id="section-4.3">4.3 构建基本 CRUD（创建，读取，更新，删除）联系人应用</h3>
 <blockquote>
-<p>Here's the same idea as above, but with more data fields for each name (3 columns of table data, instead of 2).  Name, Address, and Phone values can be found at consecutive Name, Name + 1, and Name + 2 positions:</p>
+<p>以下是与上述相同的想法，但每个姓名有更多数据字段（3 列数据，而不是 2 列）。  姓名，地址和电话号码可以在连续的姓名，姓名+ 1 和姓名+ 2 的位置找到：</p>
 <pre>Red [needs: 'view]
 mycontacts: [
     "John Smith" "123 Tomline Lane Forest Hills, NJ" "555-1234"
@@ -726,13 +728,13 @@ foreach [name address phone] mycontacts [append names name]
 view [
     t: text-list data names [
         print {
-            "Name: "
+            "姓名："
             pick t/data t/selected
-            " Address: "
+            " 地址："
             pick mycontacts (
                 1 + index? find mycontacts (pick t/data t/selected)
             )
-            " Phone: "
+            "电话号码："
             pick mycontacts (
                 2 + index? find mycontacts (pick t/data t/selected)
             )
@@ -740,7 +742,7 @@ view [
     ]
 ]
 </pre>
-<p>Instead of printing some rejoined text, display each data item in a text entry field:</p>
+<p>不打印一些重新连接的文本，而是在文本输入字段中显示每个数据项：</p>
 <pre>Red [needs: 'view]
 mycontacts: copy [
     "John Smith" "123 Tomline Lane Forest Hills, NJ" "555-1234"
@@ -762,15 +764,15 @@ view [
             2 + index? find mycontacts (pick t/data t/selected)
         )
     ]
-    text "Name:"
+    text "姓名："
     n: field
-    text "Address:"
+    text "地址："
     a: field
-    text "Phone:"
+    text "电话号码："
     p: field
 ]
 </pre>
-<p>Here's a version of the code above, with a nicer layout using the 'panel widget:</p>
+<p>这是上面的代码版本，使用 panel 组件的更好的布局：</p>
 <pre>Red [needs: 'view]
 mycontacts: copy [
     "John Smith" "123 Tomline Lane Forest Hills, NJ" "555-1234"
@@ -793,16 +795,16 @@ view [
     ]
     panel [
         下面
-        text "Name:"
+        text "姓名："
         n: field 200
-        text "Address:"
+        text "地址："
         a: field 200
-        text "Phone:"
+        text "电话号码："
         p: field 200
     ]
 ]
 </pre>
-<p>Add items to a block (data displayed in a text-list) by entering text into field widgets:</p>
+<p>通过在字段窗口组件中输入文本，将项目添加到区块组件中（数据显示在文本列表中）：</p>
 <pre>Red [needs: 'view]
 contacts: copy []  names: copy [""]
 view [
@@ -817,13 +819,13 @@ view [
     ]
     panel [
         下面
-        text "Name:"
+        text "姓名："
         n: field 200
-        text "Address:"
+        text "地址："
         a: field 200
-        text "Phone:"
+        text "电话号码："
         p: field 200
-        button "Add" [
+        button "添加" [
             append contacts reduce [copy n/text copy a/text copy p/text]
             clear names
             foreach [name address phone] contacts [append names name]
@@ -831,7 +833,7 @@ view [
     ]
 ]
 </pre>
-<p>This example uses a function to encapsulate duplicated code (which doesn't shorten the whole program much here, but if the duplicated code was, for example, 20 lines long and used in 5 different places, the whole program would be about 100 lines shorter):</p>
+<p>该示例使用一个函数来封装重复的代码（这并不会缩短整个程序，但是如果重复的代码例如是 20 行的长度，并且在 5 个不同的地方使用，则整个程序将会在 100 行以内）：</p>
 <pre>Red [needs: 'view]
 extract-names: func [] [
     clear names
@@ -851,20 +853,20 @@ view [
     ]
     panel [
         下面
-        text "Name:"
+        text "姓名："
         n: field 200
-        text "Address:"
+        text "地址："
         a: field 200
-        text "Phone:"
+        text "电话号码："
         p: field 200
-        button "Add" [
+        button "添加" [
             append contacts reduce [copy n/text copy a/text copy p/text]
             extract-names
         ]
     ]
 ]
 </pre>
-<p>Load a list from file using 'load %filename, and assign it a variable label.  Save a list to file using 'save %filename [list].  Create an empty file using save %filename [], only if it doesn't already exist (if the file is not found in the reading of the current directly listing):</p>
+<p>使用 load ％filename 从文件加载列表，并为其分配变量标签。  使用 save ％filename [list] 将列表保存到文件。  只有当它不存在（如果在当前直接列表的读取中找不到该文件）时， save ％filename [] 会创建一个空文件：</p>
 <pre>Red [needs: 'view]
 extract-names: func [] [
     clear names
@@ -877,7 +879,7 @@ contacts: load %contacts
 names: [""]
 names: extract-names
 view [
-    title "Contacts"
+    title "联系人"
     t: text-list data names [
         n/text: copy pick t/data t/selected
         a/text: copy pick contacts (
@@ -889,31 +891,31 @@ view [
     ]
     panel [
         下面
-        text "Name:"
+        text "姓名："
         n: field 200
-        text "Address:"
+        text "地址："
         a: field 200
-        text "Phone:"
+        text "电话号码："
         p: field 200
-        button "Add" [
+        button "添加" [
             append contacts reduce [copy n/text copy a/text copy p/text]
             extract-names
         ]
-        button "Save" [save %contacts contacts]
+        button "保存" [save %contacts contacts]
     ]
 ]
 </pre>
-<p>Notice that a 'title widget with the text "Contacts" was added to the program above, which is displayed in the title bar of the GUI window.</p>
-<p>You could create a wide variety of basic "CRUD" (create, read, update, delete) apps using variations of the code above.  So far, this program actually only creates and reads, but we'll add more to it shortly.</p>
+<p>请注意，在上面的程序中添加了一个带有“联系人”文本的标题组件，显示在 GUI 窗口的标题栏中。</p>
+<p>您可以使用上述代码的变体创建各种基本的“CRUD”（创建，阅读，更新，删除）应用程序。  到目前为止，这个程序实际上只是创建和读取，但是我们稍后会添加更多的内容。</p>
 </blockquote>
 <h2 id="section-5">5. 几个更完整的应用程序示例</h2>
 <blockquote>
 </blockquote>
 <h3 id="section-5.1">5.1 提示计算器</h3>
 <blockquote>
-<p>This app calculates the total amount, including tip, to pay for a restaurant meal:</p>
+<p>此应用程序计算支付餐厅用餐的总金额（包括提示）：</p>
 <ol>
-<li>A window layout is created.  It contains a title widget, 3 text field widgets, labeled 'f,'t, and 'x, and a button widget.  The 'below word is used to position each consecutive widget below one another.</li>
+<li>创建窗口布局。  It contains a title widget, 3 text field widgets, labeled 'f,'t, and 'x, and a button widget.  The 'below word is used to position each consecutive widget below one another.</li>
 <li>The 'f and 't fields contain some default money and tip rate values ($9 and .2 (20 percent)).</li>
 <li>When the button is clicked by the user, the 'x field's text is set to the value computed by multiplying the 'f field's float value, times the 't field's float value + 1 (i.e., the total to pay for a $9 bill is ($9 times 1.2)):</li>
 </ol>
