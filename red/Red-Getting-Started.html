@@ -471,34 +471,34 @@ view layout gui
 <h4 id="section-3.8.3">3.8.3 服务器和 CGI Web 应用程序</h4>
 <p>Red 语言具有内置的网络和数据/代码传输功能，可以轻松创建客户端-服务器应用程序。  客户端应用程序可以用 Red，HTML/CSS/Javascript 或使用标准网络协议（HTTP://，TCP，UDP 等）连接的任何其他语言编写。  Red 语言还提供本地“CGI”功能，以便服务器脚本可以在典型的 Apache 主机或任何其他 Web 服务器堆栈上运行，并接受来自 HTML Web 表单，Ajax 请求等的输入，然后打印 HTML 或格式化数据响应以显示在用户的网络浏览器中。</p>
 <p>本文末尾的完整部分专门用于创建 CGI 应用程序（独立网络应用程序在“快速入门”第2部分中介绍）。  这允许您使用 Red 语言创建基于 Web 的实用数据管理应用程序，可以在移动设备或任何具有浏览器的平台上访问。</p>
-<h4 id="section-3.8.4">3.8.4 Faceless Apps</h4>
-<p>Certain types of utility scripts may not require any interaction with a user.  For example, apps that run in the background to perform scheduled file maintenance, to upload routine data backups, to check and update the current system time, etc., don't necessarily need to show you that they're running.  Red scripts can run in memory without any front end display.</p>
+<h4 id="section-3.8.4">3.8.4 无界面应用</h4>
+<p>某些类型的实用程序脚本可能不需要与用户的任何交互。  例如，在后台执行计划文件维护，上传例行数据备份，检查和更新当前系统时间等的应用程序不一定需要向您显示它们正在运行。  Red 脚本可以在内存中运行，无需任何前端显示。</p>
 </blockquote>
 <h3 id="section-3.9">3.9 用户自定义函数</h3>
 <blockquote>
-<p>You can create your own functions in Red using the "func" code structure.  New functions are assigned a word label with a colon symbol.  The label(s) of data arguments which the function will process are listed in a block, then the calculations or other actions which the function performs are included in a following block.</p>
-<p>Here's a function called 'triple, which multiplies the number 3 times any given number argument (called 'x here):</p>
+<p>您可以使用“func”代码结构在 Red 语言中创建自己的函数。  为新函数分配一个后跟冒号符号的单词标签。  函数将处理的数据参数的标签列在代码块中，然后计算或函数执行的其他操作包含在后面的代码块中。</p>
+<p>这里是一个名为“triple”的函数，它将任意给定数字为参数的数字乘以3（在此称为“x”）：</p>
 <pre>triple: func [x] [
     print 3 * x
 ]
 </pre>
-<p>Now you can apply the 'triple function to any argument value, as if that function was a native function word built into the Red language:</p>
+<p>现在，您可以将“triple”函数应用于任何参数值条件下，就像该函数是 Red 语言中内置的内置函数一样：</p>
 <pre>triple 4
 triple 5
 triple 6
-print "I just tripled the numbers 4 (12), 5 (15), and 6 (18)"
+print "我只是把数字 4 (12), 5 (15), 和 6 (18) 增加了三倍"
 </pre>
-<p>Think of the 'x argument (parameter) in the function definition above just like some program's command line option - it represents some variable data that you send to the program to do some work with.  In the 'triple function, the argument represents whatever number is multiplied by 3, and 'x is the variable placeholder used to represent that parameter value.</p>
-<p>The 'does structure is a shortcut for 'func, when no data parameters are needed:</p>
+<p>想像上面的函数定义中的参数 x（参数），就像一些程序的命令行选项一样 - 它代表一些你发送给程序的变量数据来做一些工作。  在 triple 函数中，参数表示任何数字乘以3，而 x 是用于表示该参数值的变量占位符。</p>
+<p>does 结构是 func 的快捷方式，当不需要数据参数时：</p>
 <pre>cls: does [loop 100 [print newline]]
 cls
 </pre>
 <h4 id="section-3.9.1">3.9.1 返回值</h4>
-<p>The last value in a Red function definition is treated as its "return" value.  The 'check function below takes a series of string values as its parameter (labeled 'list here), and checks to see if it contains any bad words (in this example, bad words are specified by the characters "--").  This function starts out by setting the variable 'answer to "safe", then uses a 'foreach loop and an 'if condition to see if "--" is found in any of the strings in the series.  If at any point the bad characters are found, the 'answer variable is set to "unsafe".  At the end of the function the 'answer variable is returned.  The function is then run on both the names1 and names2 lists, and the user is shown the returned results:</p>
+<p>Red 函数定义中的最后一个值被视为其“返回”值。  下面的 check 函数采用一系列字符串值作为参数（这里标记为 list ），并检查它是否包含任何坏字（在这个例子中，坏字由字符“ --”指定）。  该函数通过将变量 answer 设置为“安全”开始，然后使用 foreach 循环和 if 条件查看是否在序列中的任何字符串中找到“--”。  如果在任何时候发现坏字符，answer 变量设置为“非安全”。  在函数结束时，返回 answer 变量。  该函数然后在 names1 和 names2 列表上运行，并显示用户返回的结果：</p>
 <pre>check: func [list] [
-    answer: "safe"
+    answer: "安全"
     foreach l list [
-        if find l "--" [answer: "unsafe"]
+        if find l "--" [answer: "非安全"]
     ]
     answer
 ]
@@ -511,9 +511,9 @@ print append "names2 is " check names2
 <p>You can save collections of useful functions ("libraries") to a file, and import them with 'do.  This saves you from having to retype or paste the code of commonly used function definitions into each new program.  Save just the 'check function code above to a file named "myfunctions.red" - be sure to include the rebol[] header when saving code to a file:</p>
 <pre>Red []
 check: func [list] [
-    answer: "safe"
+    answer: "安全"
     foreach l list [
-        if find l "--" [answer: "unsafe"]
+        if find l "--" [answer: "非安全"]
     ]
     answer
 ]
