@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><!-- saved from url=(0048)http://redprogramming.com/Getting%20Started.html --><html><style id="Force_Custom_Fonts" type="text/css">@font-face{font-style:normal;font-family:"Noto Sans CJK SC Regular";src:local("Noto Sans CJK SC Regular")}@font-face{font-style:bolder;font-family:"Noto Sans CJK SC Regular";src:local("Noto Sans CJK SC Regular")}:not(pre):not(code):not(textarea):not(tt):not(kbd):not(samp):not(var){font-family:"Noto Sans CJK SC Regular"!important}pre,code,textarea,tt,kbd,samp,var{font-family:"Noto Sans Mono CJK SC Regular"!important}pre *,code *,textarea *,tt *,kbd *,samp *,var *{font-family:"Noto Sans Mono CJK SC Regular"!important}</style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>开始起步</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><!-- saved from url=(0048)http://redprogramming.com/Getting%20Started.html --><html><style id="Force_Custom_Fonts" type="text/css">@font-face{font-style:normal;font-family:"Noto Sans CJK SC Regular";src:local("Noto Sans CJK SC Regular")}@font-face{font-style:bolder;font-family:"Noto Sans CJK SC Regular";src:local("Noto Sans CJK SC Regular")}:not(pre):not(code):not(textarea):not(tt):not(kbd):not(samp):not(var){font-family:"Noto Sans CJK SC Regular"!important}pre,code,textarea,tt,kbd,samp,var{font-family:"Noto Sans Mono CJK SC Regular"!important}pre *,code *,textarea *,tt *,kbd *,samp *,var *{font-family:"Noto Sans Mono CJK SC Regular"!important}</style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>开始起步 </title>
 
 <meta http-equiv="Page-Enter" content="RevealTrans( Duration=2,Transition=14)">
 <style type="text/css">
@@ -31,7 +31,7 @@ a:hover { color: blue; text-decoration: underline; background: #F9EDED }
 
 
 
-<td background="http://redprogramming.com/Getting%20Started.html" bgcolor="lightgrey" height="10" width="90%"><center><a href="http://redprogramming.com/Home.html">主页</a>开始起步</center></td>
+<td background="http://redprogramming.com/Getting%20Started.html" bgcolor="lightgrey" height="10" width="90%"><center><a href="http://redprogramming.com/Home.html">主页</a> ：开始起步</center></td>
 
 
 
@@ -396,7 +396,7 @@ ask ""
 <p>对于大多数“应用程序”，GUI（图形用户界面）屏幕用于输入和输出数据并控制程序流程。  按钮，文本字段，下拉选择器和其他“小部件”让用户可以操作程序。  Red 语言提供了一个简单的内置代码方言来创建交互式 GUI 。  “view”一词创建一个窗口布局。  一个代码块保存组件描述。  below 和 across 关键字用于设置窗口组件的默认顺序位置。  将本节中的每个示例保存为 .red 文件，并编译它们以查看创建的屏幕：</p>
 <pre>Red [title: "测试" needs: 'view]
 view [
-    下面
+    below
     button
     field
     text“Red 语言真的很容易编程”。
@@ -407,7 +407,7 @@ view [
 <p>您可以通过适当的在每个组件后面跟随修饰参数来调整屏幕布局中任何窗口组件的视觉特征：</p>
 <pre>Red [title: "测试" needs: 'view]
 view [
-    下面
+    below
     button red "点击我"              
     field 400 "在这里输入一些文字"  
     text font-size 16 "Red 语言真的很容易编程。" purple
@@ -424,7 +424,7 @@ view [
 <p>您可以使用路径（“/”）语法来引用组件中包含的数据。  将变量标签分配给要引用的任何组件：</p>
 <pre>Red [title: "测试" needs: 'view]
 view [
-    下面
+    below
     text "一些动作示例。  尝试使用每个小部件："
     button red "点击我" [
         print "你按下了红色按钮。"
@@ -441,7 +441,7 @@ view [
 
 Red [title: "测试" needs: 'view]
 view [
-    下面
+    below
     a: area                               ; 标有“a”的区块组件
     f: field                              ; 标有“f”的字段组件
     across
@@ -452,7 +452,7 @@ view [
 
 Red [title: "测试" needs: 'view]
 view [
-    下面
+    below
     t: text-list data [1 2 3]                ; 标有“t”的文本列表
     button "显示选中" [print pick t/data t/selected]
 ]
@@ -610,7 +610,7 @@ view [
 <p>这里的文本 <i>附加</i> 到 mylist.txt。  每次新的保存操作都不会覆盖文件内容，而是加载上一个文件，然后添加一个新的行。  append 函数将加载的文本与新文本（以及一些换行符）连接在一起，以便创建多行日志文件：</p>
 <pre>Red [needs: 'view]
 view [
-    下面
+    below
     f: field "在这里输入一些行。。。"
     button "保存" [
         save %mylist.txt append append load %mylist.txt f/text "^M^/"
@@ -754,7 +754,7 @@ mycontacts: copy [
 names: copy []
 foreach [name address phone] mycontacts [append names name]
 view [
-    下面
+    below
     t: text-list data names [
         n/text: pick t/data t/selected
         a/text: pick mycontacts (
@@ -794,7 +794,7 @@ view [
         )
     ]
     panel [
-        下面
+        below
         text "姓名："
         n: field 200
         text "地址："
@@ -818,7 +818,7 @@ view [
         )
     ]
     panel [
-        下面
+        below
         text "姓名："
         n: field 200
         text "地址："
@@ -852,7 +852,7 @@ view [
         )
     ]
     panel [
-        下面
+        below
         text "姓名："
         n: field 200
         text "地址："
@@ -890,7 +890,7 @@ view [
         )
     ]
     panel [
-        下面
+        below
         text "姓名："
         n: field 200
         text "地址："
@@ -915,17 +915,17 @@ view [
 <blockquote>
 <p>此应用程序计算支付餐厅用餐的总金额（包括提示）：</p>
 <ol>
-<li>创建窗口布局。  It contains a title widget, 3 text field widgets, labeled 'f,'t, and 'x, and a button widget.  The 'below word is used to position each consecutive widget below one another.</li>
-<li>The 'f and 't fields contain some default money and tip rate values ($9 and .2 (20 percent)).</li>
-<li>When the button is clicked by the user, the 'x field's text is set to the value computed by multiplying the 'f field's float value, times the 't field's float value + 1 (i.e., the total to pay for a $9 bill is ($9 times 1.2)):</li>
+<li>创建窗口布局。  它包含一个标题组件，3 个文本字段组件，标记为“f”，“t”和“x”以及一个按钮组件。  below 关键字用于将每个连续的组件放置在彼此之下。</li>
+<li>f 和 t 字段包含一些默认的金额和百分比值（$9 和 0.2（20％））。</li>
+<li>当用户点击按钮时，将 x 字段的文本设置为通过乘以 f 字段的浮点值，乘以 t 字段的浮点值 + 1 之后计算的值（即，支付 $9 票据的总和为（$9 乘 1.2））：</li>
 </ol>
 <pre>Red [needs: 'view]
 view [
-    title "Tip Calculator"
-    下面
+    title "提示计算器"
+    below
     f: field "9"
     t: field ".2" 
-    button "Calculate" [
+    button "计算" [
         append clear x/text (to float! f/text) * (1 + (to float! t/text))
     ]
     x: field "tip"
@@ -934,16 +934,16 @@ view [
 </blockquote>
 <h3 id="section-5.2">5.2 图块游戏</h3>
 <blockquote>
-<p>The code below creates a playable tile game.  Click any tile piece to move it into the empty space.  Rearrange the tiles in ascending order:</p>
+<p>下面的代码创建一个可玩的图块游戏。  点击任何图块将其移动到空白空间。  按升序重新排列图块：</p>
 <ol>
-<li>A GUI window layout is created with the title "Tile Game" and a silver backdrop color.</li>
-<li>The 'style word, in Red's GUI dialect, is used to create a new 'button object labeled 't.  Whenever a 't widget is clicked by the user, three actions occur:  the label 'x is set to the box's current 'offset (coordinate position), the box's coordinate position is set to the 'e widget's position, and the 'e widget's position is changed to the 'x position.  These three actions together effectively <i>swap</i> the positions of the clicked button and the 'e widget (as you'll see below, the widget labeled 'e is just a plain silver base widget (box), which appears as a blank space in the window layout).</li>
-<li>The 'return word, in Red's GUI dialect, is used to start a new "line" of widgets (similar to how a carriage return is used to start a new line in a text document).</li>
-<li>A bunch of 't box widgets are added to lines in the window layout, along with the final base widget labeled 'e.  Any time you click a numbered button, its position is swapped with the empty silver box.</li>
+<li>创建 GUI 窗口布局，标题为“图块游戏”和银色背景色。</li>
+<li>Red 语言的 GUI 方言中的“style”用于创建一个标记为“t”的新的 button 对象。  每当用户点击 t 组件时，会发生三个动作：  标签 x 设置为框的当前 offset（偏移坐标位置），框的坐标位置设置为 e 组件的位置，并且将 e 组件的位置更改为位置 x。  这三个动作一起有效地 <i>交换</i> 点击的按钮和 e 组件的位置（如下面将看到的，标注为 e 的组层只是一个银色基本组件（框），它在窗口布局中显示为一个空白块）。</li>
+<li>Red 语言的 GUI 方言中的 return 关键字用于启动一个新的 line 组件（类似于使用回车符在文本文档中启动新行）。</li>
+<li>在窗口布局中的一些 t 窗口框组件被添加到标签为 e 的最终基础组件中。  任何时候你点击一个带编号的按钮，它的位置都会与空的银色框交换。</li>
 </ol>
 <pre>Red [needs: 'view] 
 view [ 
-     title "Tile Game"
+     title "图块游戏"
      backdrop silver
      style t: button 100x100 [
          x: face/offset
@@ -952,23 +952,23 @@ view [
      ] 
      t "8"  t "7"  t "6"  return 
      t "5"  t "4"  t "3"  return 
-     t "2"  t" 1"  e: base silver
+     t "2"  t "1"  e: base silver
 ]
 </pre>
 </blockquote>
 <h3 id="section-5.3">5.3 通用计算器</h3>
 <blockquote>
-<p>Below is a calculator app.  Most of the code should make sense.</p>
+<p>以下是一个计算器应用程序。  大多数代码都有意义。</p>
 <ol>
-<li>A GUI window is created, with the title "Calculator"</li>
-<li>The window layout includes a field labeled 'f.  It is 230x50 pixels in size, and the font size of text displayed in it is 25.</li>
-<li>The 'style word is used to create a new button object called 'b, which is 50x50 pixels in size, and which appends the current button's face text to the 'f field widget's text, whenever one of the 'b buttons is clicked.</li>
-<li>A bunch of 'b buttons are added to the window layout, each displaying a different number or mathematical operator.  The 'return word is used to start new lines of buttons.</li>
-<li>The "=" button attempts to set the 'f field's text to whatever results in "do"ing (evaluating) the current mathematical expression displayed in the 'f field.</li>
+<li>创建一个 GUI 窗口，标题为“计算器”</li>
+<li>窗口布局包括一个标有 f 的字段。  它的大小为 230x50 像素，其中显示的文字的字体大小为 25。</li>
+<li>style 关键字用于创建一个名为 b 的新按钮对象，其大小为 50x50 像素，并且当 b 按钮被点击时，将当前按钮的文本附加到 f 组件的文本中。</li>
+<li>一组 b 按钮被添加到窗口布局中，每个显示不同的数字或数学运算符。  return 关键字用于启动新的按钮行。</li>
+<li>“=”按钮尝试将 f 字段的文本设置为 do （评估）f 字段中显示的当前数学表达式的任何结果。</li>
 </ol>
 <pre>Red [needs: 'view]
 view [
-     title "Calculator"
+     title "计算器"
      f: field 230x50 font-size 25 ""  return 
      style b: button 50x50 [append f/text face/text]
      b "1"  b "2"  b "3"  b " + "  return 
@@ -978,73 +978,75 @@ view [
              calculation: form do f/text 
              append clear f/text calculation
      ]] 
-更多的例子即将推出！</pre>
-<p>注意：  if you want to work with floats (fractions) in this calculator app, be sure to include a decimal point in at least one of the entered numbers (i.e., 1.0 / 2, instead of 1 / 2)</p>
-<p>Try building this same app in any other programming language, and you'll see that there is absolutely nothing simpler than Red's dialect approach to building windowed programs.</p>
+]
+</pre>
+<p>注意：  如果要在此计算器应用程序中使用浮点数（分数），请确保在至少一个输入的数字中包含小数点（即 1.0/2，而不是 1/2）</p>
+<p>尝试使用任何其他编程语言构建相同的应用程序，您将看到完全没有比 Red 语言的方言更简单的方法来构建窗口化程序。</p>
 </blockquote>
 <h3 id="section-5.4">5.4 硬币翻转</h3>
 <blockquote>
-<p>Clicking the button in this app randomly flips between a heads and tails coin image:</p>
+<p>点击此应用程序中的按钮，会在硬币的头像和图案两面之间随机翻转：</p>
 <ol>
-<li>Two images are loaded from specified URLs on the Internet.  The label 'h is assigned to the loaded heads image.  The label 't is assigned to the loaded tails image.</li>
-<li>A window layout is created with the title "Coin Flip" and the 'below layout directive.  It contains an image widget labeled 'i which initially displays the 'h image (the coin head image), a text field entry widget labeled 'f, and a button displaying the text "Flip".</li>
-<li>When the button is clicked, it sets the 'f field text to the first item in a randomly ordered list of the 2 text strings "Heads" and "Tails".</li>
-<li>Next, an 'either conditional evaluation is performed.  If the text in the 'f field is "Heads" (that random state was determined in the previous step), then the image value of the 'i widget is set to the 'h image (the heads image).  Otherwise (i.e., if the text in the 'f field is "Tails"), then the image in the 'i widget is set to 't (the tails image).</li>
-<li>The display (labeled 'g) is updated using the 'show function.</li>
+<li>两个图像从特定的因特网 URL 加载。  标签 h 被分配给加载的头像。  标签 t 被分配给加载的图案。</li>
+<li>创建一个窗口布局，标题为“硬币翻转”然后 below 安排布局指令。  它包含一个标记为初始显示 h 图像（硬币头图像）的图像组件，标有 f 的文本字段组件，以及一个显示文本“翻转”的按钮。</li>
+<li>当按钮被点击时，它将 f 字段文本设置为 2 个文本字符串“头像”和“图案”的随机排列列表中的第一个项目。</li>
+<li>接下来，执行 either 条件判断。  如果 f 字段中的文本是“头像”（在前面的步骤中确定了该随机状态），则将 i 组件的图像设置为 h 图像（头部图像）。  否则（即，如果 f 字段中的文本为“图案”），则 i 小部件中的图像设置为 t（图案图像）。</li>
+<li>屏幕（标记为 g ）使用 show 函数进行刷新。</li>
 </ol>
 <pre>Red [needs: 'view]
 h: load http://re-bol.com/heads.jpg
 t: load http://re-bol.com/tails.jpg
 view [
-    title: "Coin Flip"
-    下面
+    title: "硬币翻转"
+    below
     i: image h
     f: field
-    button "Flip" [
-        在这个例子中，随机数生成器没有播种。
-        either f/text = "Heads" [i/image: h] [i/image: t] 
+    button "翻转" [
+        f/text: first random ["头像" "图案"]
+        either f/text = "头像" [i/image: h] [i/image: t] 
     ]
 ]
 </pre>
-<p>注意：  In this example, the random number generator is not seeded.  以下是一些更短的应用示例。</p>
+<p>注意：  在这个例子中，随机数生成器没有提前设种。  以下是一些更短的应用示例。</p>
 </blockquote>
 <h3 id="section-5.5">5.5 额外的应用学习示例</h3>
 <blockquote>
-<p>Here are a few more short app examples.  红色[需要：'view] x：func [] [append append form random 10“+”form random 20] view [  Pay attention to which pieces of code are variable labels, GUI layout widgets, conditional evaluations, etc.</p>
-<p>Here's an app to quiz users on basic addition math facts.  Try changing it to quiz subtraction, multiplication, and division on selected ranges of random numbers (i.e., subtraction on numbers 1 - 100 or multiplication on numbers 1 - 12):</p>
+<p>以下是一些更短的应用示例。  看看您是否可以按照每个程序中的基本代码流程。  注意哪些代码是可变标签，GUI 布局组件，条件判断等。</p>
+<p>这是一个应用程序来测验用户基本的数学能力。  尝试将其改为选择的随机数范围上的测验减法，乘法和除法（即，对数字 1 至 100 进行减法或数字 1-12 的相乘）：</p>
 <pre>Red [needs: 'view]
 x: func [] [append append form random 10 " + " form random 20]
 view [
-    f1：字段
+    title "数学测验"
     f1: field 
-    按钮“检查答案”[
-    button "Check Answer" [
-        f1 / text：x
+    f2: field "在这里解答"
+    button "检查答案" [
+        print either f2/text = form do f1/text ["是！"]["否"]
         f1/text: x
-        形式x：[“辉煌”“罕见”“独特”“才华”“特殊”] yy：形式y：[“天才”“冠军”“赢家”“成功”“成就者” ]视图[
+        f2/text: ""
     ]
     do [f1/text: x]
 ]
 </pre>
-<p>Try changing this one to generate insults:</p>
+<p>尝试改变这个来产生损词：</p>
 <pre>Red [needs: 'view]
 xx: form x: ["brilliant" "rare" "unique" "talented" "exceptional"]
 yy: form y: ["genius" "champion" "winner" "success" "achiever"]
 view [
-    标题“Compliment Generator”
-    下面
-    区域yy
+    title "贺词生成器"
+    below
+    area xx
     area yy
-    打印[
+    button "恭贺" [
         print {
-            “你是一个”
-            第一个随机y“！”
+            "你是一个"
+            first random x
             first random y "!"
         ]
     ] 
-更多的例子即将推出！</pre>
-<p>（一定要看</p>
-<p>(Be sure to see <a href="http://re-bol.com/rebol_quick_start.html" target="_blank">http://re-bol.com/rebol_quick_start.html</a>and<a href="http://re-bol.com/short_rebol_examples.r" target="_blank">http://re-bol.com/short_rebol_examples.r</a>看看本教程的标题，因为Red成熟为Rebol 2的全部功能。</p>
+]
+</pre>
+<p>更多的例子即将推出！</p>
+<p>（一定要看 <a href="http://re-bol.com/rebol_quick_start.html" target="_blank">http://re-bol.com/rebol_quick_start.html</a> 和 <a href="http://re-bol.com/short_rebol_examples.r" target="_blank">http://re-bol.com/short_rebol_examples.r</a> 看看本教程的标题，因为 Red 语言正在覆盖 Rebol 2 的全部功能）。</p>
 </blockquote>
 </td></tr><tr>
 
