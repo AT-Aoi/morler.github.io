@@ -393,81 +393,81 @@ either all [user = "iwu83" pass = "zqo72"] [
 ask ""
 </pre>
 <h4 id="section-3.8.2">3.8.2 GUI 应用程序</h4>
-<p>For most "apps", a GUI (graphic user interface) screen is used to input and output data and to control program flow.  Buttons, text fields, drop-down selectors, and other "widgets" allow the user to operate the program.  Red provides a simple built-in code dialect for creating interactive GUIs.  The word "view" create a window layout.  A block holds widget descriptions.  The words 'below and 'across are used to set the default sequential position of widgets.  Save each of the examples in this section to a .red file, and compile them to see the screens created:</p>
-<pre>Red [title: "test" needs: 'view]
+<p>对于大多数“应用程序”，GUI（图形用户界面）屏幕用于输入和输出数据并控制程序流程。  按钮，文本字段，下拉选择器和其他“小部件”让用户可以操作程序。  Red 语言提供了一个简单的内置代码方言来创建交互式 GUI 。  “view”一词创建一个窗口布局。  一个代码块保存组件描述。  below 和 across 关键字用于设置窗口组件的默认顺序位置。  将本节中的每个示例保存为 .red 文件，并编译它们以查看创建的屏幕：</p>
+<pre>Red [title: "测试" needs: 'view]
 view [
     下面
     button
     field
-    text "Red is really pretty easy to program."
+    text“Red 语言真的很容易编程”。
     text-list
     check
 ]
 </pre>
-<p>You can adjust the visual characteristics of any widget in a screen layout by following each widget with appropriate modifiers:</p>
-<pre>Red [title: "test" needs: 'view]
+<p>您可以通过适当的在每个组件后面跟随修饰参数来调整屏幕布局中任何窗口组件的视觉特征：</p>
+<pre>Red [title: "测试" needs: 'view]
 view [
     下面
-    button red "Click Me"              
-    field 400 "Enter some text here"  
-    text font-size 16 "Red is really pretty easy to program." purple
-    text-list 400x300 data ["line 1" "line 2" "another line"]
+    button red "点击我"              
+    field 400 "在这里输入一些文字"  
+    text font-size 16 "Red 语言真的很容易编程。" purple
+    text-list 400x300 data ["行 1" "行 2" "另一行"]
     check yellow
 ]
 </pre>
-<p>You can have widgets perform functions, or any block of code, when clicked or otherwise activated.  Just put the functions inside another set of brackets after the widget.  This is how you get your GUIs to 'do something':</p>
-<pre>Red [title: "test" needs: 'view]
+<p>当单击或其他方式激活时，您可以使用组件执行函数或任何代码块。  只需将函数放在组件之后的另一组方括号中。  这就是如何让你的 GUI“做某事”：</p>
+<pre>Red [title: "测试" needs: 'view]
 view [
-    button "Click me" [print "You clicked the button."]
+    button "点击我" [print "你按下了按钮。"]
 ]
 </pre>
-<p>You can refer to data contained in widgets using the path ("/") syntax.  Assign a variable label to any widgets which you want to reference:</p>
-<pre>Red [title: "test" needs: 'view]
+<p>您可以使用路径（“/”）语法来引用组件中包含的数据。  将变量标签分配给要引用的任何组件：</p>
+<pre>Red [title: "测试" needs: 'view]
 view [
     下面
-    text "Some action examples.  Try using each widget:"
-    button red "Click Me" [
-        print "You clicked the red button."
+    text "一些动作示例。  尝试使用每个小部件："
+    button red "点击我" [
+        print "你按下了红色按钮。"
     ]
-    f: field 400 "Type some text here, then press [Enter]" [
+    f: field 400 "在这里输入一些文字，然后按下 [Enter]" [
         print f/text
     ]
-    t: text-list 400x300 data ["Select this" "Then this" "Now this"][
+    t: text-list 400x300 data ["选择这个" "然后这个" "现在这个"][
         print pick t/data t/selected
     ]
-    check yellow [print "You clicked the yellow check box."]
-    button "Quit" [unview]    
+    check yellow [print "你点击了黄色复选框。"]
+    button "退出" [unview]    
 ]
 
-Red [title: "test" needs: 'view]
+Red [title: "测试" needs: 'view]
 view [
     下面
-    a: area                               ; an area widget labeled 'a
-    f: field                              ; a field widget labeled 'f
+    a: area                               ; 标有“a”的区块组件
+    f: field                              ; 标有“f”的字段组件
     across
-    button "Show" [print a/text]
-    button "Save" [write %somedatafile.txt a/text]
-    button "Load" [f/text: read %somedatafile.txt]
+    button "显示" [print a/text]
+    button "保存" [write %somedatafile.txt a/text]
+    button "加载" [f/text: read %somedatafile.txt]
 ]
 
-Red [title: "test" needs: 'view]
+Red [title: "测试" needs: 'view]
 view [
     下面
-    t: text-list data [1 2 3]                ; a text-list labeled 't
-    button "Show Selected" [print pick t/data t/selected]
+    t: text-list data [1 2 3]                ; 标有“t”的文本列表
+    button "显示选中" [print pick t/data t/selected]
 ]
 </pre>
-<p>You can build layouts dynamically using loops, and then display the resulting constructed GUI code:</p>
-<pre>Red [title: "test" needs: 'view]
+<p>您可以使用循环结构动态构建布局，然后显示生成的 GUI 代码：</p>
+<pre>Red [title: "测试" needs: 'view]
 gui: copy []
 foreach color [red green blue] [
     append gui reduce ['text color]
 ]
 view layout gui
 </pre>
-<p>You'll need to learn a lot more about creating GUI screens if you want to create user apps with Red, but you can get a lot done with just the basics demonstrated above.</p>
-<p>Take a look through some <a href="http://redprogramming.com/Short%20Red%20Code%20Examples.html" target="_blank">additional GUI examples</a> which demonstrate interesting widgets and how to use them.</p>
-<p>The examples in the second half of this text will explain and demonstrate by rote many common GUI techniques.</p>
+<p>如果要使用 Red 语言创建用户应用程序，您将需要了解更多关于创建GUI 界面的信息，但您可以通过上述基础知识完成许多工作。</p>
+<p>看看一些<a href="http://redprogramming.com/Short%20Red%20Code%20Examples.html" target="_blank">额外的 GUI 示例</a>这些演示了有趣的组件以及如何使用它们。</p>
+<p>本文下半部分的例子将通过许多常见的 GUI 技术来解释和演示。</p>
 <h4 id="section-3.8.3">3.8.3 Server and CGI Web Apps</h4>
 <p>Red has network and data/code transfer features built in, which allow you to easily create client-server applications.  Client apps can be written in Red, HTML/CSS/Javascript, or any other language which can connect using standard network protocols (HTTP://, TCP, UDP, etc.).  Red also provides native "CGI" capabilities, so that server scripts can run on a typical Apache host or any other web server stack, and accept input from HTML web forms, Ajax requests, etc., then print HTML or formatted data responses to appear in the user's web browser.</p>
 <p>A complete section at the end of this text is dedicated to creating CGI applications (stand-alone network applications are covered in Quick Start, Part 2).  This allows you to create useful web based data management apps, with Red, which can be accessed on mobile devices, or any platform which has a browser.</p>
