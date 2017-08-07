@@ -8,6 +8,12 @@
 
 ---
 
-大坑！[Red by Example 中文翻译（开始作死）-v20170803](./red/redbyexample/index.html)
+我决定搞个大动作！:-D
+
+---
+
+大坑！[Red by Example 中文翻译（暂停）-v20170807](./red/redbyexample/index.html)
 
 原文链接：[Red by Example](http://www.red-by-example.org/)
+
+看到大神说这篇文章质量不高，暂时停止翻译。
